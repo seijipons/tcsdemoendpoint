@@ -1,0 +1,17 @@
+    DROP TABLE IF EXISTS Products;  
+    CREATE TABLE User (  
+    Id INT AUTO_INCREMENT  PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,  
+    Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP  
+    );  
+
+    DROP TABLE IF EXISTS Message;  
+    CREATE TABLE Message (  
+    Id INT AUTO_INCREMENT  PRIMARY KEY,
+    Message VARCHAR(50) NOT NULL,
+    MessageFrom INTEGER NOT NULL,
+    MessageTo INTEGER NOT NULL,  
+    Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (MessageFrom, MessageTo) REFERENCES User(Id, Id)
+    );  
+      
