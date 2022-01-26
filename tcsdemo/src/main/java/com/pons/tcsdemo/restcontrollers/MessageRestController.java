@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +25,11 @@ public class MessageRestController {
 	@Autowired
 	MessageService messageService;
 	
-	@GetMapping()
+	@GetMapping("/getMessages/{idUser}")
 	@ResponseBody
-	public ResponseEntity<List<Message>> getMessagesTo(@RequestParam String id){
+	public ResponseEntity<List<Message>> getMessagesTo(@PathVariable String idUser){
 		
-		List<Message> messages= messageService.getMessagesTo(id);
+		List<Message> messages= messageService.getMessagesTo(idUser);
 		
 		if (messages.size() == 0) {
 			return ResponseEntity.notFound().header("Content-Type", "application/json").build();
@@ -38,7 +39,7 @@ public class MessageRestController {
 		
 	}
 	
-	@PostMapping(value = "", produces = "application/json; charset=UTF-8")
+	@PostMapping ("/sendMessage")
 	@ResponseBody
 	public ResponseEntity<Message> addMessage(@RequestBody Message newMessage){
 				

@@ -5,14 +5,14 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.pons.tcsdemo.entities.User;
+import com.pons.tcsdemo.entities.UserEntity;
 
-public class UserRowMapper implements RowMapper<User>{
+public class UserRowMapper implements RowMapper<UserEntity>{
 
 	@Override
-	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public UserEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
-		User u = new User();
+		UserEntity u = new UserEntity();
 
 		u.setId(rs.getString("Id"));
 		u.setName(rs.getString("Name"));
